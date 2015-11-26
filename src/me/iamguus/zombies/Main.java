@@ -1,5 +1,6 @@
 package me.iamguus.zombies;
 
+import me.iamguus.zombies.utils.ChatUtil;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +14,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.p = this;
 
-
+        ChatUtil.get().setup(p);
     }
 
     public void onDisable() {

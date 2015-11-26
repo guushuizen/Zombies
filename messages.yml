@@ -1,0 +1,15 @@
+general:
+  prefix: "&7[&2Zombies&7]"
+  no-permission: "&cYou do not have the right permissions to execute this command!"
+  not-a-player: "You can't run this command because you are not a player!"
+commands:
+  create:
+    syntax: "&cIncorrect syntax; use /zombies admin create (arena name)"
+
+# %arena% for arena name
+    complete: "&aSuccessfully created arena %arena%! You can start setting the sign and spawns now!"
+  maxplayers:
+    syntax: "&cIncorrect syntax; use /zombies admin maxplayers (arena name)"
+
+# %arena% for arena name, %maxplayers% for max players
+    complete: "&aSuccessfully set the maximum players of arena %arena% to %maxplayers%!"

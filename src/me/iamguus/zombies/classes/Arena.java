@@ -2,6 +2,7 @@ package me.iamguus.zombies.classes;
 
 import me.iamguus.zombies.utils.LocationUtil;
 import me.iamguus.zombies.utils.PerArenaConfig;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -67,7 +68,15 @@ public class Arena {
     public void setState(GameState state) { this.state = state; }
 
     public void updateSign() {
-        // TODO: set sign text etc.
+        if (sign != null) {
+            if (sign.getBlock().getState() instanceof Sign) {
+                this.sign.setLine(0, "" + ChatColor.GREEN + ChatColor.BOLD + "[JOIN]");
+                this.sign.setLine(1, "COMZ");
+                this.sign.setLine(2, ChatColor.BLUE + "(" + ChatColor.RESET + ChatColor.BOLD + this.ingame.size() + "/" + this.maxplayers + ChatColor.BLUE + ")");
+                this.sign.setLine(3, this.name);
+                sign.update();
+            }
+        }
     }
 
     public void save() {

@@ -21,6 +21,16 @@ public class ArenaUtil {
 
     }
 
+    public Arena getArena(String name) {
+        for (Arena loop : allArenas) {
+            if (loop.getName().equalsIgnoreCase(name)) {
+                return loop;
+            }
+        }
+
+        return null;
+    }
+
     public static ArenaUtil get() {
         if (instance == null) {
             instance = new ArenaUtil();
