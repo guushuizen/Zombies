@@ -1,6 +1,7 @@
-package me.iamguus.zombies.data;
+package me.iamguus.zombies.utils;
 
 import me.iamguus.zombies.Main;
+import me.iamguus.zombies.classes.Arena;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

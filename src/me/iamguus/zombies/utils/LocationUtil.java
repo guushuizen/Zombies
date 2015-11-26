@@ -1,4 +1,4 @@
-package me.iamguus.zombies.data;
+package me.iamguus.zombies.utils;
 
 
 import org.bukkit.Bukkit;
