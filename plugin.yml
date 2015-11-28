@@ -3,3 +3,6 @@ name: Zombies
 version: 1.0
 author: iAmGuus
 description: Custom Zombies plugin made for TheFFounder
+commands:
+  zombies:
+    description: Main command for the Zombie command

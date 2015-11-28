@@ -9,7 +9,24 @@ commands:
 # %arena% for arena name
     complete: "&aSuccessfully created arena %arena%! You can start setting the sign and spawns now!"
   maxplayers:
-    syntax: "&cIncorrect syntax; use /zombies admin maxplayers (arena name)"
+    syntax: "&cIncorrect syntax; use /zombies admin maxplayers (arena name)  (new maximum players)"
 
 # %arena% for arena name, %maxplayers% for max players
     complete: "&aSuccessfully set the maximum players of arena %arena% to %maxplayers%!"
+  sign:
+    syntax: "&cIncorrect syntax; use /zombies admin sign (arena name)"
+
+# %arena% for arena name
+    complete: "&aSuccessfully added sign for arena %arena%"
+  spawn:
+    syntax: "&cIncorrect syntax; use /zombies admin spawn (arena name)"
+
+# %arena% for arena name
+    complete: "&aSuccessfully set spawn location for arena %arena% at your current position!"
+  zombiespawns:
+    syntax: "&cIncorrect syntax; use /zombies admin zombiespawns (add/remove/set) [id]. (Only use [id] argument at set & remove argument)"
+
+# %arena% for arena name, %id% for spawn ID
+    add-complete: "&aSuccessfully added zombie spawn #%id% for arena %arena% at your current location."
+    remove-complete: "&aSuccessfully removed zombie spawn #%id% for arena %arena%!"
+    set-complete: "&aSuccessfully replaced zombie spawn #%id% in arena %arena% with your current location."

@@ -13,6 +13,9 @@ public class LocationUtil {
     private static LocationUtil instance;
 
     public String serialize(Location loc) {
+        if (loc == null) {
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
 
         sb.append("w:" + loc.getWorld().getName() + " ");
@@ -24,6 +27,9 @@ public class LocationUtil {
     }
 
     public Location deserialize(String s) {
+        if (s == null) {
+            return null;
+        }
         String[] parts = s.split(" ");
 
         String wS = parts[0].split(":")[1];

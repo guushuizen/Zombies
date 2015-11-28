@@ -1,8 +1,13 @@
 package me.iamguus.zombies;
 
+import me.iamguus.zombies.commands.AdminCommands;
+import me.iamguus.zombies.utils.ArenaUtil;
 import me.iamguus.zombies.utils.ChatUtil;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Guus on 25-11-2015.
@@ -15,6 +20,10 @@ public class Main extends JavaPlugin {
         this.p = this;
 
         ChatUtil.get().setup(p);
+
+        this.getCommand("zombies").setExecutor(new AdminCommands());
+
+        ArenaUtil.get().loadAllArenas();
     }
 
     public void onDisable() {

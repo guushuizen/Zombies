@@ -31,7 +31,7 @@ public class Arena {
         this.name = name;
         this.maxplayers = maxplayers;
         this.spawnLoc = spawnLoc;
-        this.zombieLocs = zombieLocs;
+        this.zombieLocs = (zombieLocs == null) ? new ArrayList<Location>() : zombieLocs;
         this.sign = sign;
         this.ingame = new ArrayList<UUID>();
     }
@@ -89,7 +89,7 @@ public class Arena {
             toSave.add(LocationUtil.get().serialize(loc));
         }
         pac.getFile().set("zombielocs", toSave);
-        pac.getFile().set("sign", LocationUtil.get().serialize(this.sign.getLocation()));
+        pac.getFile().set("sign", (this.sign != null) ? LocationUtil.get().serialize(this.sign.getLocation()) : null);
         pac.getFile().set("enabled", enabled);
         pac.saveFile();
     }
@@ -104,7 +104,7 @@ public class Arena {
             for (String s : conf.getStringList("zombielocs")) {
                 zombieLocs.add(LocationUtil.get().deserialize(s));
             }
-            Sign sign = (Sign) LocationUtil.get().deserialize(conf.getString("sign")).getBlock().getState();
+            Sign sign = (LocationUtil.get().deserialize(conf.getString("sign")) != null) ? (Sign) LocationUtil.get().deserialize(conf.getString("sign")).getBlock().getState() : null;
             boolean enabled = conf.getBoolean("enabled");
             Arena out = new Arena(name, maxplayers, spawnLoc, zombieLocs, sign, enabled);
             return out;

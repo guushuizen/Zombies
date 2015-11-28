@@ -13,10 +13,13 @@ import java.io.IOException;
  */
 public class PerArenaConfig {
 
-    File f;
-    FileConfiguration conf;
+    private File dir;
+
+    private File f;
+    private FileConfiguration conf;
 
     public PerArenaConfig(Arena arena) {
+        this.dir = new File(Main.getPlugin().getDataFolder(), "arenas" + File.separator);
         this.f = new File(Main.getPlugin().getDataFolder(), "arenas" + File.separator + arena.getName() + ".yml");
         if (!f.exists()) {
             try {

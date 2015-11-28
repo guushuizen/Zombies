@@ -1,5 +1,6 @@
 package me.iamguus.zombies.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,6 +11,7 @@ import org.bukkit.plugin.Plugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
 
 /**
@@ -25,12 +27,13 @@ public class ChatUtil {
     public void setup(Plugin p) {
         f = new File(p.getDataFolder(), "messages.yml");
         if (!f.exists()) {
-            try {
-                InputStream link = p.getResource("messages.yml");
-                Files.copy(link, f.getAbsoluteFile().toPath());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+//            try {
+//                URL inputUrl = p.getClass().getResource("messages.yml");
+//                FileUtils.copyURLToFile(inputUrl, f);
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+            p.saveResource("messages.yml", false);
         }
         conf = YamlConfiguration.loadConfiguration(f);
     }

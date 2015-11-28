@@ -1,8 +1,10 @@
 package me.iamguus.zombies.utils;
 
+import me.iamguus.zombies.Main;
 import me.iamguus.zombies.classes.Arena;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,19 @@ public class ArenaUtil {
         }
 
         return null;
+    }
+
+    public void loadArena(Arena arena) { allArenas.add(arena); }
+
+    public void loadAllArenas() {
+        File arenaDir = new File(Main.getPlugin().getDataFolder(), "arenas" + File.separator);
+        if (arenaDir.exists()) {
+            if (arenaDir.listFiles().length > 0) {
+                for (File loop : arenaDir.listFiles()) {
+                    loadArena(Arena.loadArenaFromConfig(loop));
+                }
+            }
+        }
     }
 
     public static ArenaUtil get() {
