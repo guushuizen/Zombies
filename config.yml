@@ -1,0 +1,14 @@
+# Amount of players needed to start counting down for game start. (By default: 2)
+start-players: 2
+
+# Seconds at which counting down starts when the amount of players needed to start is gained. (By default: 60)
+count-down-start: 60
+
+# Seconds left at which an announcement about the time remaining should be made
+announcement-time: '60, 45, 30, 20, 15, 10, 5, 4, 3, 2, 1'
+
+# If the xp bar is used to show the time left before game starts and current round.
+xp-bar: true
+
+# The time (in seconds) in which a switch of rounds is made. (By default: 10)
+switch-rounds: 10

@@ -23,6 +23,9 @@ commands:
 
 # %arena% for arena name
     complete: "&aSuccessfully set spawn location for arena %arena% at your current position!"
+  lobby:
+# %arena% for arena name
+    complete: "&aSuccessfully set lobby location for arena %arena% at your  current position!"
   zombiespawns:
     syntax: "&cIncorrect syntax; use /zombies admin zombiespawns (add/remove/set) [id]. (Only use [id] argument at set & remove argument)"
 
@@ -30,3 +33,53 @@ commands:
     add-complete: "&aSuccessfully added zombie spawn #%id% for arena %arena% at your current location."
     remove-complete: "&aSuccessfully removed zombie spawn #%id% for arena %arena%!"
     set-complete: "&aSuccessfully replaced zombie spawn #%id% in arena %arena% with your current location."
+  enable:
+# %arena% for arena name
+    complete: "&aSuccessfully enabled arena %arena%!"
+  disable:
+# %arena% for arena name
+    complete: "&aSuccessfully disabled arena %arena%!"
+
+actions:
+  join-sign:
+    arena-full: "&cThe arena you are trying to join is already full!"
+    already-in-arena: "&cYou are already in an arena!"
+  gun-sign:
+    not-enough-money: "&cSorry, but you do not have enough coins to buy this gun!"
+# %gun% for gun name.
+    bought-gun: "&aYou have successfully bought the %gun% gun!"
+
+
+announcements:
+# The announcement made when certain time is left. %timeleft% for time left.
+  game-starting-in: "In %timeleft% seconds, you will be teleported to the map!"
+
+
+# %arena% for arena name
+  joined-arena: "&aSuccessfully joined arena %arena%"
+
+# %player% for player's name, %currentplayers% for current players, %maxplayers% for max players
+  player-join: "&a%player% joined the game! &7(%currentplayers%/%maxplayers%)"
+
+# The announcement made when a certain time is left before a certain round starts. %timeleft% for time left, %round% for round number
+  round-starts-in: "&7In %timeleft% seconds, round %round% will begin!"
+
+# The announcement made when a new round starts. %round% for round number.
+  round-begin: "&aRound %round% has begun! The zombies will spawn any second now."
+
+scoreboard:
+  title: "&aCOM:Z"
+
+# %round% for round
+  round: "&2Round: %round%"
+
+  separator: "&7============"
+
+# %money% for money
+  money: "&aMoney: %money%"
+
+# %timeleft% for time left.
+  timeleft: "&aTime left: %timeleft%s"
+
+# %zombies% for zombies left.
+  zombies: "&aZombies left: %zombies%"

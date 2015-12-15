@@ -37,7 +37,7 @@ public class AdminCommands implements CommandExecutor {
                             if (args[1].equalsIgnoreCase("create")) {
                                 if (args.length == 3) {
                                     String name = args[2];
-                                    Arena arena = new Arena(name, 6, null, null, null);
+                                    Arena arena = new Arena(name, 6, null, null,  null, null);
                                     arena.save();
                                     ArenaUtil.get().loadArena(arena);
                                     player.sendMessage(ChatUtil.get().sendPrefix("commands.create.complete").replaceAll("%arena%", arena.getName()));
@@ -81,7 +81,7 @@ public class AdminCommands implements CommandExecutor {
                                                 arena.setSign(s);
                                                 arena.updateSign();
                                                 arena.save();
-                                                player.sendMessage(ChatUtil.get().sendPrefix("commands.sign.complete"));
+                                                player.sendMessage(ChatUtil.get().sendPrefix("commands.sign.complete").replaceAll("%arena%", arena.getName()));
                                                 return true;
                                             } else {
                                                 player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " The arena is not enabled and so no sign can be added.");
@@ -106,7 +106,8 @@ public class AdminCommands implements CommandExecutor {
                                     if (arena != null) {
                                         arena.setSpawnLoc(player.getLocation());
                                         arena.save();
-                                        player.sendMessage(ChatUtil.get().sendPrefix("commands.spawn.complete").replaceAll("%name%", arena.getName()));
+                                        player.sendMessage(ChatUtil.get().sendPrefix("commands.spawn.complete").replaceAll("%arena" +
+                                                "%", arena.getName()));
                                         return true;
                                     } else {
                                         player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " Arena " + args[2] + " was not found!");
@@ -117,8 +118,21 @@ public class AdminCommands implements CommandExecutor {
                                     return false;
                                 }
                             } else
+                            if (args[1].equalsIgnoreCase("lobby")) {
+                                if (args.length == 3) {
+                                    Arena arena = ArenaUtil.get().getArena(args[2]);
+                                    if (arena != null) {
+                                        arena.setLobbyLoc(player.getLocation());
+                                        arena.save();
+                                        player.sendMessage(ChatUtil.get().sendPrefix("commands.lobby.complete").replaceAll("%arena%", arena.getName()));
+                                        return true;
+                                    } else {
+                                        player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " The arena " + args[2] + " was not found!");
+                                        return false;
+                                    }
+                                }
+                            } else
                             if (args[1].equalsIgnoreCase("zombiespawns")) {
-                                // zombies admin zombiespawns (arena) (add/remove/set) [id]
                                 if (args.length == 4 || args.length == 5) {
                                     Arena arena = ArenaUtil.get().getArena(args[2]);
                                     if (arena != null) {
@@ -189,6 +203,45 @@ public class AdminCommands implements CommandExecutor {
                                 } else {
                                     player.sendMessage(ChatUtil.get().sendPrefix("commands.zombiespawns.syntax"));
                                     return false;
+                                }
+                            } else if (args[1].equalsIgnoreCase("enable")) {
+                                if (args.length == 3) {
+                                    Arena arena = ArenaUtil.get().getArena(args[2]);
+                                    if (arena != null) {
+                                        if (!arena.getEnabled()) {
+                                            if (arena.getLobbyLoc() != null && arena.getSpawnLoc() != null && !arena.getZombieLocs().isEmpty()) {
+                                                arena.setEnabled(true);
+                                                arena.save();
+                                                arena.updateSign();
+                                                player.sendMessage(ChatUtil.get().sendPrefix("commands.enable.complete").replaceAll("%arena%", arena.getName()));
+                                                return true;
+                                            } else {
+                                                player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " Some properties of arena " + arena.getName() + "are not set yet, make sure they are before enabling the arena.");
+                                                return true;
+                                            }
+                                        } else {
+                                            player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " The arena is already enabled!");
+                                            return false;
+                                        }
+                                    } else {
+                                        player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " The arena " + args[2] + " was not found!");
+                                        return true;
+                                    }
+                                }
+                            } else
+                            if (args[1].equalsIgnoreCase("disable")) {
+                                if (args.length == 3) {
+                                    Arena arena = ArenaUtil.get().getArena(args[2]);
+                                    if (arena != null) {
+                                        arena.setEnabled(false);
+                                        arena.save();
+                                        arena.updateSign();
+                                        player.sendMessage(ChatUtil.get().sendPrefix("commands.disable.complete").replaceAll("%arena%", arena.getName()));
+                                        return true;
+                                    } else {
+                                        player.sendMessage(ChatUtil.get().sendNoPrefix("general.prefix") + ChatColor.RED + " The arena " + args[2] + " was not found!");
+                                        return false;
+                                    }
                                 }
                             }
                             else {

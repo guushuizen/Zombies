@@ -1,0 +1,7 @@
+guns:
+  M4A1:
+    name: M4A1
+    item: id:280
+    ammo: 120
+    magazine: 12
+    reloadtime: 1
